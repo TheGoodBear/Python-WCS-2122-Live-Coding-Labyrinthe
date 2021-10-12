@@ -39,12 +39,12 @@ def Run():
     while Var.GameIsRunning:
         RC.ColorPrintAt(f"", Y=Var.TextLine, X=1)
         Action = input("Prochaine action : ").upper()
-        
+
         # repeat last player action if action is empty
         if Action == "":
             Action = Var.PlayerData["LastAction"]
         
-        if Action in Var.PossibleActions:
+        if Action in Var.PossibleActions.keys():
             # do action
             if Action == "H" or Action == "B" or Action == "G" or Action == "D":
                 Player.Move(Action)

@@ -24,14 +24,16 @@ def Move(Direction):
     PlayerX = Var.PlayerData["X"]
 
     # calculate new player position
-    if Direction == "H":
-        PlayerY -= 1
-    elif Direction == "B":
-        PlayerY += 1
-    if Direction == "G":
-        PlayerX -= 1
-    if Direction == "D":
-        PlayerX += 1
+    PlayerY += Var.PossibleActions[Direction]["DeltaY"]
+    PlayerX += Var.PossibleActions[Direction]["DeltaX"]
+    # if Direction == "H":
+    #     PlayerY -= 1
+    # elif Direction == "B":
+    #     PlayerY += 1
+    # elif Direction == "G":
+    #     PlayerX -= 1
+    # elif Direction == "D":
+    #     PlayerX += 1
 
     # check if movement is valid
     MapElementAtPlayerPosition = Var.MapData[PlayerY - 1][PlayerX - 1]
