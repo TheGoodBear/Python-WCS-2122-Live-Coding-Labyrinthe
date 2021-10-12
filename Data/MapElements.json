@@ -1,0 +1,26 @@
+{
+    " " : {
+        "Symbol" : " ",
+        "Foreground" : "WHITE",
+        "Background" : "BLACK",
+        "Name" : "sol"
+    },
+    "*" : {
+        "Symbol" : "░",
+        "Foreground" : "BLACK",
+        "Background" : "WHITE",
+        "Name" : "mur"
+    },
+    "E" : {
+        "Symbol" : " ",
+        "Foreground" : "WHITE",
+        "Background" : "BLACK",
+        "Name" : "sol"
+    },
+    "S" : {
+        "Symbol" : "◘",
+        "Foreground" : "BLUE",
+        "Background" : "WHITE",
+        "Name" : "sortie"
+    }
+}
