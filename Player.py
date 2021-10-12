@@ -35,7 +35,8 @@ def Move(Direction):
 
     # check if movement is valid
     MapElementAtPlayerPosition = Var.MapData[PlayerY - 1][PlayerX - 1]
-    if MapElementAtPlayerPosition != "*":
+    MapElementData = Var.MapElements[MapElementAtPlayerPosition]
+    if MapElementData["CanWalk"]:
         Draw(True)
         Var.PlayerData["Y"] = PlayerY
         Var.PlayerData["X"] = PlayerX
@@ -48,7 +49,7 @@ def Move(Direction):
                 X=1)
     else:
         # obstacle
-        print("Aïe, un mur !")
+        print(f"Aïe, un {MapElementData['Name']} !")
 
 
 def Draw(Erase = False):
@@ -57,15 +58,23 @@ def Draw(Erase = False):
     """
 
     Symbol = Var.PlayerData["Symbol"]
+    FG = Var.PlayerData["Foreground"]
+    BG = Var.PlayerData["Background"]
+
+    MapElement = Var.MapElements[
+        Var.MapData[Var.PlayerData["Y"] - 1]
+        [Var.PlayerData["X"] - 1]]
     # check if player is beeing erased
     if Erase:
-        Symbol = Var.MapData[Var.PlayerData["Y"] - 1][Var.PlayerData["X"] - 1]
+        Symbol = MapElement["Symbol"]
+        FG = MapElement["Foreground"]
+        BG = MapElement["Background"]
 
     # draw symbol at right place
     RC.ColorPrintAt(
         Symbol,
-        Var.PlayerData["Foreground"],
-        Var.PlayerData["Background"],
+        FG,
+        BG,
         Var.PlayerData["Y"],
         Var.PlayerData["X"])
 

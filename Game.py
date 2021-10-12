@@ -25,7 +25,7 @@ def Start():
 
     Player.LoadDataFromFile()
     Map.LoadMapElementDataFromFile()
-    Map.LoadFromFile()
+    Map.LoadFromFile(2)
     Map.DrawMap()
     Player.Draw()
 
@@ -40,10 +40,15 @@ def Run():
         RC.ColorPrintAt(f"", Y=Var.TextLine, X=1)
         Action = input("Prochaine action : ").upper()
         
+        # repeat last player action if action is empty
+        if Action == "":
+            Action = Var.PlayerData["LastAction"]
+        
         if Action in Var.PossibleActions:
             # do action
             if Action == "H" or Action == "B" or Action == "G" or Action == "D":
                 Player.Move(Action)
+                Var.PlayerData["LastAction"] = Action
             
             elif Action == "Q":
                 Var.GameIsRunning = False

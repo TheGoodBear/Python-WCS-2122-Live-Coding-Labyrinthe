@@ -3,5 +3,6 @@
     "Foreground" : "YELLOW",
     "Background" : "BLACK",
     "X" : null,
-    "Y" : null
+    "Y" : null,
+    "LastDirection" : ""
 }
