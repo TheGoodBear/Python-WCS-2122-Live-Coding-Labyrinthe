@@ -37,7 +37,7 @@ def Run():
     """
 
     while Var.GameIsRunning:
-        RC.ColorPrintAt(f"{RC.Prefix}K", Y=len(Var.MapData)+1, X=0)
+        RC.ColorPrintAt(f"", Y=Var.TextLine, X=1)
         Action = input("Prochaine action : ").upper()
         
         if Action in Var.PossibleActions:

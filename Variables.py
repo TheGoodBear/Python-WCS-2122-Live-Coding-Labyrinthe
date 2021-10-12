@@ -8,6 +8,7 @@ MapFolder = "Maps/"
 GameIsRunning = True
 PossibleActions = ["H", "B", "G", "D", "Q"]
 PlayerData = None
+TextLine = 0
 
 # map elements
 MapElements = None

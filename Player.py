@@ -1,6 +1,7 @@
 # coding: utf-8
 
 # imports
+import json
 import Variables as Var
 import RichConsole as RC
 import Map as Map
@@ -18,14 +19,51 @@ def Move(Direction):
 
     print(f"Le joueur se déplace vers {Direction}")
 
+    # save actual player position
+    PlayerY = Var.PlayerData["Y"]
+    PlayerX = Var.PlayerData["X"]
 
-def Draw():
+    # calculate new player position
+    if Direction == "H":
+        PlayerY -= 1
+    elif Direction == "B":
+        PlayerY += 1
+    if Direction == "G":
+        PlayerX -= 1
+    if Direction == "D":
+        PlayerX += 1
+
+    # check if movement is valid
+    MapElementAtPlayerPosition = Var.MapData[PlayerY - 1][PlayerX - 1]
+    if MapElementAtPlayerPosition != "*":
+        Draw(True)
+        Var.PlayerData["Y"] = PlayerY
+        Var.PlayerData["X"] = PlayerX
+        Draw()
+        if MapElementAtPlayerPosition == "S":
+            Var.GameIsRunning = False
+            RC.ColorPrintAt(
+                "\nBRAVO, tu as trouvé la sortie.",
+                Y=Var.TextLine+2,
+                X=1)
+    else:
+        # obstacle
+        print("Aïe, un mur !")
+
+
+def Draw(Erase = False):
     """
         Draw player on map
     """
 
+    Symbol = Var.PlayerData["Symbol"]
+    # check if player is beeing erased
+    if Erase:
+        Symbol = Var.MapData[Var.PlayerData["Y"] - 1][Var.PlayerData["X"] - 1]
+
+    # draw symbol at right place
     RC.ColorPrintAt(
-        Var.PlayerData["Symbol"],
+        Symbol,
         Var.PlayerData["Foreground"],
         Var.PlayerData["Background"],
         Var.PlayerData["Y"],

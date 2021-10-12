@@ -67,7 +67,10 @@ def ColorPrintAt(
     if Y != None and X != None:
         Position = f"{Prefix}{Y};{X}{Position_Suffix}"
 
-    print (f"{Position}{Prefix}{FG}{Separator}{BG}{Style_Suffix}{Text}{Prefix}{Reset}{Style_Suffix}")
+    print (
+        f"{Position}{Prefix}{FG}{Separator}{BG}{Style_Suffix}{Text}{Prefix}{Reset}{Style_Suffix}",
+        end="",
+        flush=True)
 
 
 def ClearConsole():
